@@ -2,6 +2,7 @@ package tarun.SpringBootDemo.SpringBootDemo;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import tarun.SpringBootDemo.SpringBootDemo.organization.Organization;
 import tarun.SpringBootDemo.SpringBootDemo.organization.OrganizationRepository;
 import tarun.SpringBootDemo.SpringBootDemo.users.User;
 import tarun.SpringBootDemo.SpringBootDemo.users.UserRepository;
@@ -25,4 +26,12 @@ public class JpaController {
     {
         return userRepository.findAll();
     }
+
+    @GetMapping("/organization")
+    public List<Organization> GetAllOrganizations()
+    {
+        return organizationRepository.findAll();
+    }
+
+
 }
