@@ -1,14 +1,15 @@
 package tarun.SpringBootDemo.SpringBootDemo;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tarun.SpringBootDemo.SpringBootDemo.Exception.NotFoundException;
 import tarun.SpringBootDemo.SpringBootDemo.organization.Organization;
 import tarun.SpringBootDemo.SpringBootDemo.organization.OrganizationRepository;
 import tarun.SpringBootDemo.SpringBootDemo.users.User;
 import tarun.SpringBootDemo.SpringBootDemo.users.UserRepository;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,6 +59,21 @@ public class JpaController {
         return organization;
     }
 
+    @PostMapping("/users")
+    public ResponseEntity<User> CreateUser(@RequestBody User user)
+    {
+        User savedUser = userRepository.save(user);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getUserId()).toUri();
+        return ResponseEntity.created(location).build();
+    }
+
+    @PostMapping("/organization")
+    public ResponseEntity<Organization> CreateOrganization(@RequestBody Organization organization)
+    {
+        Organization savedOrganization = organizationRepository.save(organization);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedOrganization.getOrganizationId()).toUri();
+        return ResponseEntity.created(location).build();
+    }
 
 
 }

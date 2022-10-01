@@ -7,7 +7,7 @@ import tarun.SpringBootDemo.SpringBootDemo.users.User;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "Organization")
+@Entity(name = "Organization_details")
 public @Data class Organization {
 
     @Id
