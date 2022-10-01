@@ -42,9 +42,20 @@ public class JpaController {
         Optional<User> user = userRepository.findById(id);
         if(user.isEmpty())
         {
-            throw new NotFoundException("id : "+id);
+            throw new NotFoundException("User with id : "+id+" was not found");
         }
         return user;
+    }
+
+    @GetMapping("organization/{id}")
+    public Optional<Organization> GetOrganizationById(@PathVariable int id)
+    {
+        Optional<Organization> organization = organizationRepository.findById(id);
+        if(organization.isEmpty())
+        {
+            throw new NotFoundException("Organization of id : "+id+" was not found");
+        }
+        return organization;
     }
 
 
