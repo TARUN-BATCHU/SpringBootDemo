@@ -75,5 +75,31 @@ public class JpaController {
         return ResponseEntity.created(location).build();
     }
 
+    @DeleteMapping("delete/users/{id}")
+    public void DeleteUser(@PathVariable int id)
+    {
+        userRepository.deleteById(id);
+    }
+
+    @DeleteMapping("delete/organization/{id}")
+    public void DeleteOrganization(@PathVariable int id)
+    {
+        organizationRepository.deleteById(id);
+    }
+
+    @DeleteMapping("delete/users")
+    public void DeleteUsers()
+    {
+        userRepository.deleteAll();
+    }
+
+    @DeleteMapping("delete/organizations")
+    public void DeleteOrganizations()
+    {
+        organizationRepository.deleteAll();
+    }
+
+
+
 
 }
