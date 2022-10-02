@@ -12,10 +12,8 @@ public @Data class Organization {
 
     @Id
     @GeneratedValue
-//    @Column(name = "ORGANIZATION_ID")
     private Integer OrganizationId;
 
-//    @Column(name = "ORGANIZATION_NAME")
     private String OrganizationName;
 
     @OneToMany(mappedBy = "organization",cascade = CascadeType.ALL,orphanRemoval = true)

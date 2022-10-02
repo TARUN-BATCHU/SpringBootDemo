@@ -9,7 +9,9 @@ import tarun.SpringBootDemo.SpringBootDemo.organization.OrganizationRepository;
 import tarun.SpringBootDemo.SpringBootDemo.users.User;
 import tarun.SpringBootDemo.SpringBootDemo.users.UserRepository;
 
+import java.awt.print.Pageable;
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -99,7 +101,12 @@ public class JpaController {
         organizationRepository.deleteAll();
     }
 
-
-
-
+    @GetMapping("/users/Organization/{OrganizationId}")
+    public List<User> retrieveUsersForOrganization(@PathVariable int OrganizationId)
+    {
+        Optional<Organization> organization = organizationRepository.findById(OrganizationId);
+        if(organization.isEmpty())
+            throw new NotFoundException("There were no users in the organization with id:"+OrganizationId);
+        return organization.get().getUser();
+    }
 }
