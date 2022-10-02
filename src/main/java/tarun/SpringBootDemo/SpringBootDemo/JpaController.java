@@ -111,6 +111,14 @@ public class JpaController {
         return organization.get().getUser();
     }
 
+//    @GetMapping("/users/OrganizationName/{OrganizationName}")
+//    public List<User> retrieveUsersForOrganizationName(@PathVariable String OrganizationName)
+//    {
+//        Optional<Organization> organization = organizationRepository.findByOrganizationName(OrganizationName);
+//        if(organization.isEmpty())
+//            throw new NotFoundException("There were no users in the organization with Name:"+OrganizationName);
+//        return organization.get().getUser();
+//    }
 
 //    @PutMapping("/users/{UserId}")
 //    public ResponseEntity<User> UpdateUser(@RequestBody User user, @PathVariable int UserId)
