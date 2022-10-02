@@ -27,18 +27,21 @@ public class JpaController {
         this.organizationRepository = organizationRepository;
     }
 
+    //get all users details
     @GetMapping("/users")
     public List<User> GetAllUsers()
     {
         return userRepository.findAll();
     }
 
+    //get all organization details
     @GetMapping("/organization")
     public List<Organization> GetAllOrganizations()
     {
         return organizationRepository.findAll();
     }
 
+    //get user details by user id
     @GetMapping("users/{id}")
     public Optional<User> GetUserById(@PathVariable int id)
     {
@@ -50,6 +53,7 @@ public class JpaController {
         return user;
     }
 
+    // get organization details by id
     @GetMapping("organization/{id}")
     public Optional<Organization> GetOrganizationById(@PathVariable int id)
     {
@@ -61,6 +65,7 @@ public class JpaController {
         return organization;
     }
 
+    // post user details
     @PostMapping("/users")
     public ResponseEntity<User> CreateUser(@RequestBody User user)
     {
@@ -69,6 +74,7 @@ public class JpaController {
         return ResponseEntity.created(location).build();
     }
 
+    //post organization details
     @PostMapping("/organization")
     public ResponseEntity<Organization> CreateOrganization(@RequestBody Organization organization)
     {
@@ -77,24 +83,28 @@ public class JpaController {
         return ResponseEntity.created(location).build();
     }
 
+    // delete user details by id
     @DeleteMapping("delete/users/{id}")
     public void DeleteUser(@PathVariable int id)
     {
         userRepository.deleteById(id);
     }
 
+    // delete organization details by id
     @DeleteMapping("delete/organization/{id}")
     public void DeleteOrganization(@PathVariable int id)
     {
         organizationRepository.deleteById(id);
     }
 
+    // delete all users
     @DeleteMapping("delete/users")
     public void DeleteUsers()
     {
         userRepository.deleteAll();
     }
 
+    // delete all organizations
     @DeleteMapping("delete/organizations")
     public void DeleteOrganizations()
     {
@@ -102,6 +112,7 @@ public class JpaController {
     }
 
 
+    // get all users by organization id
     @GetMapping("/users/Organization/{OrganizationId}")
     public List<User> retrieveUsersForOrganization(@PathVariable int OrganizationId)
     {
@@ -111,6 +122,7 @@ public class JpaController {
         return organization.get().getUser();
     }
 
+    // get all users by organization name
 //    @GetMapping("/users/OrganizationName/{OrganizationName}")
 //    public List<User> retrieveUsersForOrganizationName(@PathVariable String OrganizationName)
 //    {
@@ -120,6 +132,7 @@ public class JpaController {
 //        return organization.get().getUser();
 //    }
 
+    // update users by id
 //    @PutMapping("/users/{UserId}")
 //    public ResponseEntity<User> UpdateUser(@RequestBody User user, @PathVariable int UserId)
 //    {
