@@ -101,6 +101,7 @@ public class JpaController {
         organizationRepository.deleteAll();
     }
 
+
     @GetMapping("/users/Organization/{OrganizationId}")
     public List<User> retrieveUsersForOrganization(@PathVariable int OrganizationId)
     {
@@ -109,4 +110,13 @@ public class JpaController {
             throw new NotFoundException("There were no users in the organization with id:"+OrganizationId);
         return organization.get().getUser();
     }
+
+
+//    @PutMapping("/users/{UserId}")
+//    public ResponseEntity<User> UpdateUser(@RequestBody User user, @PathVariable int UserId)
+//    {
+//        User savedUser = userRepository.updateUser(UserId, user);
+//        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{UserId}").buildAndExpand(savedUser.getUserId()).toUri();
+//        return ResponseEntity.created(location).build();
+//    }
 }
