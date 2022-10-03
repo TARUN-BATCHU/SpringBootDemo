@@ -71,7 +71,7 @@ public class UserController {
     }
 
     // get all users by organization id
-    @GetMapping("/users/Organization/{OrganizationId}")
+    @GetMapping("/users/organization/{OrganizationId}")
     public List<User> retrieveUsersForOrganizationId(@PathVariable int OrganizationId)
     {
         Optional<Organization> organization = organizationRepository.findById(OrganizationId);
