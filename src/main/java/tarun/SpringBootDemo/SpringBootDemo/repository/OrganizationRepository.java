@@ -1,0 +1,11 @@
+package tarun.SpringBootDemo.SpringBootDemo.repository;
+
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import tarun.SpringBootDemo.SpringBootDemo.entities.Organization;
+
+
+public interface OrganizationRepository extends JpaRepository<Organization, Integer> {
+
+   // Optional<Organization> findByOrganizationName(String organizationName);
+}

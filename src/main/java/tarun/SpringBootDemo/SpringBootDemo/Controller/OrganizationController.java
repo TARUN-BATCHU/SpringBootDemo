@@ -1,9 +1,11 @@
-package tarun.SpringBootDemo.SpringBootDemo.organization;
+package tarun.SpringBootDemo.SpringBootDemo.Controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import tarun.SpringBootDemo.SpringBootDemo.Exception.NotFoundException;
+import tarun.SpringBootDemo.SpringBootDemo.exception.NotFoundException;
+import tarun.SpringBootDemo.SpringBootDemo.entities.Organization;
+import tarun.SpringBootDemo.SpringBootDemo.repository.OrganizationRepository;
 
 import java.net.URI;
 import java.util.List;
@@ -40,24 +42,27 @@ public class OrganizationController {
 
     //post organization details
     @PostMapping("/organization")
-    public ResponseEntity<Organization> createOrganization(@RequestBody Organization organization)
+    public Organization createOrganization(@RequestBody Organization organization)
     {
         Organization savedOrganization = organizationRepository.save(organization);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedOrganization.getOrganizationId()).toUri();
-        return ResponseEntity.created(location).build();
+        //URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedOrganization.getOrganizationId()).toUri();
+        //return ResponseEntity.created(location).build();
+        return savedOrganization;
     }
 
     // delete organization details by id
-    @DeleteMapping("delete/organization/{id}")
-    public void deleteOrganization(@PathVariable int id)
+    @RequestMapping("delete/organization/{id}")
+    public String deleteOrganization(@PathVariable int id)
     {
         organizationRepository.deleteById(id);
+        return "Organization deleted with id : "+id+".";
     }
 
     // delete all organizations
-    @DeleteMapping("delete/organizations")
-    public void deleteOrganizations()
+    @RequestMapping("delete/organizations")
+    public String deleteOrganizations()
     {
         organizationRepository.deleteAll();
+        return "All organization details were deleted successfully";
     }
 }

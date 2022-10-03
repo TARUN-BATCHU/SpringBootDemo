@@ -1,8 +1,7 @@
-package tarun.SpringBootDemo.SpringBootDemo.users;
+package tarun.SpringBootDemo.SpringBootDemo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import tarun.SpringBootDemo.SpringBootDemo.organization.Organization;
 
 import javax.persistence.*;
 import java.time.LocalDate;

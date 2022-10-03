@@ -1,11 +1,13 @@
-package tarun.SpringBootDemo.SpringBootDemo.users;
+package tarun.SpringBootDemo.SpringBootDemo.Controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import tarun.SpringBootDemo.SpringBootDemo.Exception.NotFoundException;
-import tarun.SpringBootDemo.SpringBootDemo.organization.Organization;
-import tarun.SpringBootDemo.SpringBootDemo.organization.OrganizationRepository;
+import tarun.SpringBootDemo.SpringBootDemo.exception.NotFoundException;
+import tarun.SpringBootDemo.SpringBootDemo.entities.Organization;
+import tarun.SpringBootDemo.SpringBootDemo.repository.OrganizationRepository;
+import tarun.SpringBootDemo.SpringBootDemo.entities.User;
+import tarun.SpringBootDemo.SpringBootDemo.repository.UserRepository;
 
 import java.net.URI;
 import java.util.List;
@@ -44,25 +46,28 @@ public class UserController {
 
     // post user details
     @PostMapping("/users")
-    public ResponseEntity<User> createUser(@RequestBody User user)
+    public User createUser(@RequestBody User user)
     {
         User savedUser = userRepository.save(user);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getUserId()).toUri();
-        return ResponseEntity.created(location).build();
+        //URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getUserId()).toUri();
+        //return ResponseEntity.created(location).build();
+        return  savedUser;
     }
 
     // delete user details by id
-    @DeleteMapping("delete/users/{id}")
-    public void deleteUser(@PathVariable int id)
+    @RequestMapping("delete/users/{id}")
+    public String deleteUser(@PathVariable int id)
     {
         userRepository.deleteById(id);
+        return "User deleted with id: "+id+".";
     }
 
     // delete all users
-    @DeleteMapping("delete/users")
-    public void deleteUsers()
+    @RequestMapping("delete/users")
+    public String deleteUsers()
     {
         userRepository.deleteAll();
+        return "All Users were deleted successfully";
     }
 
     // get all users by organization id

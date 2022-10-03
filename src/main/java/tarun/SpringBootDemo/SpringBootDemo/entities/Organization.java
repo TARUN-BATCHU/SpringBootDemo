@@ -1,8 +1,8 @@
-package tarun.SpringBootDemo.SpringBootDemo.organization;
+package tarun.SpringBootDemo.SpringBootDemo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import tarun.SpringBootDemo.SpringBootDemo.users.User;
+import tarun.SpringBootDemo.SpringBootDemo.entities.User;
 
 import javax.persistence.*;
 import java.util.List;
