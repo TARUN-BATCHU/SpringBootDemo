@@ -1,52 +1,44 @@
 package tarun.SpringBootDemo.SpringBootDemo.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import tarun.SpringBootDemo.SpringBootDemo.exception.NotFoundException;
 import tarun.SpringBootDemo.SpringBootDemo.entities.Organization;
-import tarun.SpringBootDemo.SpringBootDemo.repository.OrganizationRepository;
+import tarun.SpringBootDemo.SpringBootDemo.entities.User;
+import tarun.SpringBootDemo.SpringBootDemo.service.OrganizationService;
+import tarun.SpringBootDemo.SpringBootDemo.service.OrganizationServiceImpl;
 
-import java.net.URI;
+import javax.persistence.Id;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class OrganizationController {
+public class OrganizationController extends OrganizationServiceImpl {
 
-    private OrganizationRepository organizationRepository;
-
-    public OrganizationController(OrganizationRepository organizationRepository)
-    {
-        this.organizationRepository = organizationRepository;
-    }
+    @Autowired
+    OrganizationService organizationService;
 
     //get all organization details
     @GetMapping("/organization")
     public List<Organization> getAllOrganizations()
     {
-        return organizationRepository.findAll();
+        return organizationService.getAllOrganizations();
     }
 
     // get organization details by id
     @GetMapping("organization/{id}")
     public Optional<Organization> getOrganizationById(@PathVariable int id)
     {
-        Optional<Organization> organization = organizationRepository.findById(id);
-        if(organization.isEmpty())
-        {
-            throw new NotFoundException("Organization of id : "+id+" was not found");
-        }
-        return organization;
+        return organizationService.getOrganizationById(id);
     }
 
     //post organization details
     @PostMapping("/organization")
     public Organization createOrganization(@RequestBody Organization organization)
     {
-        Organization savedOrganization = organizationRepository.save(organization);
-        //URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedOrganization.getOrganizationId()).toUri();
-        //return ResponseEntity.created(location).build();
+        Organization savedOrganization = organizationService.createOrganization(organization);
         return savedOrganization;
     }
 
@@ -54,15 +46,27 @@ public class OrganizationController {
     @RequestMapping("delete/organization/{id}")
     public String deleteOrganization(@PathVariable int id)
     {
-        organizationRepository.deleteById(id);
-        return "Organization deleted with id : "+id+".";
+        return organizationService.deleteOrganization(id);
     }
 
     // delete all organizations
     @RequestMapping("delete/organizations")
     public String deleteOrganizations()
     {
-        organizationRepository.deleteAll();
-        return "All organization details were deleted successfully";
+        return organizationService.deleteAllOrganizations();
     }
+
+    @GetMapping("users/organization/{organizationId}")
+    public List<User> getUserByOrganizationId(@PathVariable int organizationId, Pageable pageable)
+    {
+        return organizationService.GetUsersByOrganizationId(organizationId, pageable);
+    }
+
+    @GetMapping("users/organizationName/{organizationName}")
+    public List<User> getUserByOrganizationName(@PathVariable String organizationName, Pageable pageable)
+    {
+        return organizationService.GetUsersByOrganizationName(organizationName,pageable);
+    }
+
+
 }

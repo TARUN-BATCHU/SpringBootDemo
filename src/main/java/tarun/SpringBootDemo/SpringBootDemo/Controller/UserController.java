@@ -1,102 +1,59 @@
 package tarun.SpringBootDemo.SpringBootDemo.Controller;
 
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import tarun.SpringBootDemo.SpringBootDemo.exception.NotFoundException;
-import tarun.SpringBootDemo.SpringBootDemo.entities.Organization;
-import tarun.SpringBootDemo.SpringBootDemo.repository.OrganizationRepository;
 import tarun.SpringBootDemo.SpringBootDemo.entities.User;
-import tarun.SpringBootDemo.SpringBootDemo.repository.UserRepository;
-
-import java.net.URI;
+import tarun.SpringBootDemo.SpringBootDemo.service.UserService;
+import tarun.SpringBootDemo.SpringBootDemo.service.UserServiceImpl;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class UserController {
+public class UserController extends UserServiceImpl {
 
-    private UserRepository userRepository;
-    private OrganizationRepository organizationRepository;
-
-    public UserController(UserRepository userRepository, OrganizationRepository organizationRepository)
-    {
-        this.userRepository = userRepository;
-        this.organizationRepository = organizationRepository;
-    }
+    @Autowired
+    UserService userService;
 
     //get all users details
     @GetMapping("/users")
     public List<User> getAllUsers()
     {
-        return userRepository.findAll();
+        return userService.getAllUsers();
     }
 
     //get user details by user id
     @GetMapping("users/{id}")
     public Optional<User> getUserById(@PathVariable int id)
     {
-        Optional<User> user = userRepository.findById(id);
-        if(user.isEmpty())
-        {
-            throw new NotFoundException("User with id : "+id+" was not found");
-        }
-        return user;
+        return userService.getUserById(id);
     }
 
     // post user details
     @PostMapping("/users")
     public User createUser(@RequestBody User user)
     {
-        User savedUser = userRepository.save(user);
-        //URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getUserId()).toUri();
-        //return ResponseEntity.created(location).build();
-        return  savedUser;
+        return userService.createUser(user);
     }
 
     // delete user details by id
     @RequestMapping("delete/users/{id}")
-    public String deleteUser(@PathVariable int id)
+    public String deleteUserById(@PathVariable int id)
     {
-        userRepository.deleteById(id);
-        return "User deleted with id: "+id+".";
+        return userService.deleteUserById(id);
     }
 
     // delete all users
     @RequestMapping("delete/users")
-    public String deleteUsers()
+    public String deleteAllUsers()
     {
-        userRepository.deleteAll();
-        return "All Users were deleted successfully";
+        return userService.deleteAllUsers();
     }
-
-    // get all users by organization id
-    @GetMapping("/users/organization/{OrganizationId}")
-    public List<User> retrieveUsersForOrganizationId(@PathVariable int OrganizationId)
-    {
-        Optional<Organization> organization = organizationRepository.findById(OrganizationId);
-        if(organization.isEmpty())
-            throw new NotFoundException("There were no users in the organization with id:"+OrganizationId);
-        return organization.get().getUser();
-    }
-
-    // get all users by organization name
-//    @GetMapping("/users/OrganizationName/{OrganizationName}")
-//    public List<User> retrieveUsersForOrganizationName(@PathVariable String OrganizationName)
-//    {
-//        Optional<Organization> organization = organizationRepository.findByOrganizationName(OrganizationName);
-//        if(organization.isEmpty())
-//            throw new NotFoundException("There were no users in the organization with Name:"+OrganizationName);
-//        return organization.get().getUser();
-//    }
 
 
     // update users by id
-//    @PutMapping("/users/{UserId}")
-//    public ResponseEntity<User> UpdateUser(@RequestBody User user, @PathVariable int UserId)
-//    {
-//        User savedUser = userRepository.updateUser(UserId, user);
-//        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{UserId}").buildAndExpand(savedUser.getUserId()).toUri();
-//        return ResponseEntity.created(location).build();
-//    }
+    @PutMapping("/user")
+    public User UpdateUser(@RequestBody User user)
+    {
+        return userService.updateUser(user);
+    }
 }

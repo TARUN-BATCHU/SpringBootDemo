@@ -3,8 +3,6 @@ package tarun.SpringBootDemo.SpringBootDemo.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import tarun.SpringBootDemo.SpringBootDemo.entities.User;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,9 +12,9 @@ public @Data class Organization {
 
     @Id
     @GeneratedValue
-    private Integer OrganizationId;
+    private Integer organizationId;
 
-    private String OrganizationName;
+    private String organizationName;
 
     @OneToMany(mappedBy = "organization",cascade = CascadeType.ALL,orphanRemoval = true)
     @JsonIgnore
