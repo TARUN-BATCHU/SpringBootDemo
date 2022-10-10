@@ -53,13 +53,13 @@ public class OrganizationController extends OrganizationServiceImpl {
         return organizationService.deleteAllOrganizations();
     }
 
-    @GetMapping("users/organization/{organizationId}")
+    @GetMapping("organization/users/{organizationId}")
     public List<User> getUserByOrganizationId(@PathVariable int organizationId, Pageable pageable)
     {
         return organizationService.GetUsersByOrganizationId(organizationId, pageable);
     }
 
-    @GetMapping("users/organizationName/{organizationName}")
+    @GetMapping("organizationName/users/{organizationName}")
     public List<User> getUserByOrganizationName(@PathVariable String organizationName, Pageable pageable)
     {
         return organizationService.GetUsersByOrganizationName(organizationName,pageable);
