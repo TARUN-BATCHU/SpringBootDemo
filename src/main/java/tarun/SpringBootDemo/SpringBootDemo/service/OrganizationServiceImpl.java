@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import tarun.SpringBootDemo.SpringBootDemo.entities.Organization;
 import tarun.SpringBootDemo.SpringBootDemo.entities.User;
+import tarun.SpringBootDemo.SpringBootDemo.exception.NotFoundException;
 import tarun.SpringBootDemo.SpringBootDemo.repository.OrganizationRepository;
 import tarun.SpringBootDemo.SpringBootDemo.repository.UserRepository;
 import java.util.List;
@@ -54,6 +55,8 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     public List<User> GetUsersByOrganizationId(int organizationId,Pageable pageable) {
         Optional<Organization> o = organizationRepository.findById(organizationId);
+        if(o.isEmpty())
+            throw new NotFoundException("There were no users in the organization with id:"+organizationId);
         return userRepository.findByOrganization(o,pageable);
     }
 

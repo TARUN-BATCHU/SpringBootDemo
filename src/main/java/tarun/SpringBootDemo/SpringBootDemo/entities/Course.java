@@ -4,10 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "Course")
@@ -16,12 +14,13 @@ public @Data class Course {
 
     @Id
     @GeneratedValue
-    private Integer Course_Id;
+    private Integer CourseId;
 
-    private String Course_Name;
+    private String CourseName;
 
 
-    @ManyToMany(mappedBy = "course")
+
+    @ManyToMany(mappedBy = "course", fetch = FetchType.LAZY)
     @JsonIgnore
-    private Set<User> users;
+    private Set<User> users = new HashSet<>();
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tarun.SpringBootDemo.SpringBootDemo.entities.Course;
 import tarun.SpringBootDemo.SpringBootDemo.entities.User;
+import tarun.SpringBootDemo.SpringBootDemo.exception.NotFoundException;
 import tarun.SpringBootDemo.SpringBootDemo.repository.UserRepository;
 
 import java.time.LocalDate;
@@ -18,7 +19,10 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Optional<User> getUserById(int id) {
-        return userRepository.findById(id);
+        Optional<User> u = userRepository.findById(id);
+        if(u.isEmpty())
+            throw new NotFoundException("There were no users in the organization with id:"+id);
+        return u;
     }
 
     @Override
@@ -49,12 +53,5 @@ public class UserServiceImpl implements UserService{
         System.out.println("User updated successfully");
         return user;
     }
-
-
-//    @Override
-//    public List<User> GetUsersByDob(LocalDate Dob) {
-//        return userRepository.findByDateOfBirth(Dob);
-//    }
-
 
 }
