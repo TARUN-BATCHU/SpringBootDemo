@@ -5,9 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
-@Entity(name = "User_Details")
+@Entity(name = "Users")
 @NoArgsConstructor
 public @Data class User {
 
@@ -20,18 +20,19 @@ public @Data class User {
     private LocalDate dateOfBirth;
 
     // one student will study in one organization (user is a student)
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="organizationId")
     private Organization organization;
 
-    // state organization head will take of all organizations in that state
-    //@OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
-    //private List<Organization> organization;
+    @ManyToMany
+    @JsonIgnore
+    @JoinTable(name= "Course_Users",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id"))
+    private Set<Course> course;
 
-    // many students vist organization expo
-    //@ManyToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    //private List<Organization> organization;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "user")
+    private HallTicket hallTicket;
 
-    //one principle for one school
-    //@OneToOne
-    //private Organization organization;
+
 }

@@ -2,8 +2,11 @@ package tarun.SpringBootDemo.SpringBootDemo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tarun.SpringBootDemo.SpringBootDemo.entities.Course;
 import tarun.SpringBootDemo.SpringBootDemo.entities.User;
 import tarun.SpringBootDemo.SpringBootDemo.repository.UserRepository;
+
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,6 +49,12 @@ public class UserServiceImpl implements UserService{
         System.out.println("User updated successfully");
         return user;
     }
+
+
+//    @Override
+//    public List<User> GetUsersByDob(LocalDate Dob) {
+//        return userRepository.findByDateOfBirth(Dob);
+//    }
 
 
 }

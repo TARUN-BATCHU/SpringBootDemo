@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.*;
 import tarun.SpringBootDemo.SpringBootDemo.entities.User;
 import tarun.SpringBootDemo.SpringBootDemo.service.UserService;
 import tarun.SpringBootDemo.SpringBootDemo.service.UserServiceImpl;
+
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,8 +55,9 @@ public class UserController extends UserServiceImpl {
 
     // update users by id
     @PutMapping("/user")
-    public User UpdateUser(@RequestBody User user)
+    public User updateUser(@RequestBody User user)
     {
         return userService.updateUser(user);
     }
+
 }

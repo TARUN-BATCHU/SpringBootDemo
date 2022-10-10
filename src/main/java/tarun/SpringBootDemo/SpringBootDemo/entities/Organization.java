@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "Organization_details")
+@Entity(name = "Organization")
 @NoArgsConstructor
 public @Data class Organization {
 
@@ -17,20 +17,9 @@ public @Data class Organization {
     private String organizationName;
 
     // one organization has many students (user is a student)
-    @OneToMany(mappedBy = "organization",cascade = CascadeType.ALL,orphanRemoval = true)
     @JsonIgnore
+    @OneToMany(mappedBy = "organization",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<User> user;
 
-    // one organization will have one state head
-    //@OneToOne
-    //private User user;
-
-    // many students visit many organizations before joining
-    //@ManyToMany
-    //private List<User> user;
-
-    //one principle for one school
-    //@OneToOne
-    //private User user;
 
 }
