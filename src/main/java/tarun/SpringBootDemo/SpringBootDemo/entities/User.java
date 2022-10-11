@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity(name = "Users")
+@Entity(name = "users")
 @NoArgsConstructor
 public @Data class User {
 

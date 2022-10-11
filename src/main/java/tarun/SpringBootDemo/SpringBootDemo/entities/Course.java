@@ -8,15 +8,15 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity(name = "Course")
+@Entity(name = "course")
 @NoArgsConstructor
 public @Data class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer CourseId;
+    private Integer courseId;
 
-    private String CourseName;
+    private String courseName;
 
     @ManyToMany(mappedBy = "course", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
