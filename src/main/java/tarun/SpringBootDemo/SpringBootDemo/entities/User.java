@@ -26,14 +26,20 @@ public class User {
     @JoinColumn(name="organizationId")
     private Organization organization;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinTable(name= "course_users",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "userId", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "course_id", referencedColumnName = "courseId", nullable = false,updatable = false)})
     private Set<Course> course = new HashSet<>();
 
-    @OneToOne
+//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinTable(name= "course_users",
+//            joinColumns = {@JoinColumn(name = "user_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "course_id")})
+//    private Set<Course> course;
+
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "hallTicket_fk")
     private HallTicket hallTicket;
 
