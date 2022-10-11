@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/organization")
 public class OrganizationController extends OrganizationServiceImpl {
 
     @Autowired
@@ -18,21 +19,21 @@ public class OrganizationController extends OrganizationServiceImpl {
     
 
     //get all organization details
-    @GetMapping("/organization")
+    @GetMapping("/")
     public List<Organization> getAllOrganizations()
     {
         return organizationService.getAllOrganizations();
     }
 
     // get organization details by id
-    @GetMapping("organization/{id}")
+    @GetMapping("/{id}")
     public Optional<Organization> getOrganizationById(@PathVariable int id)
     {
         return organizationService.getOrganizationById(id);
     }
 
     //post organization details
-    @PostMapping("/organization")
+    @PostMapping("/")
     public Organization createOrganization(@RequestBody Organization organization)
     {
         Organization savedOrganization = organizationService.createOrganization(organization);
@@ -40,26 +41,26 @@ public class OrganizationController extends OrganizationServiceImpl {
     }
 
     // delete organization details by id
-    @DeleteMapping("organization/{id}")
+    @DeleteMapping("/{id}")
     public String deleteOrganization(@PathVariable int id)
     {
         return organizationService.deleteOrganization(id);
     }
 
     // delete all organizations
-    @DeleteMapping("organization")
+    @DeleteMapping("/")
     public String deleteOrganizations()
     {
         return organizationService.deleteAllOrganizations();
     }
 
-    @GetMapping("organizations/{organizationId}/users")
+    @GetMapping("/{organizationId}/users")
     public List<User> getUserByOrganizationId(@PathVariable int organizationId, Pageable pageable)
     {
         return organizationService.getUsersByOrganizationId(organizationId, pageable);
     }
 
-    @GetMapping("organizations/organizationName/{organizationName}/users")
+    @GetMapping("/organizationName/{organizationName}/users")
     public List<User> getUserByOrganizationName(@PathVariable String organizationName, Pageable pageable)
     {
         return organizationService.getUsersByOrganizationName(organizationName,pageable);

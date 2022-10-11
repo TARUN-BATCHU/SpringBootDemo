@@ -10,27 +10,28 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/hallTicket")
 public class HallTicketController extends HallTicketServiceImpl {
 
     @Autowired
     HallTicketService hallTicketService;
 
     //get all Hallticket details
-    @GetMapping("/hallTicket")
+    @GetMapping("/")
     public List<HallTicket> getAllHallTickets()
     {
         return hallTicketService.getAllHallTickets();
     }
 
     // get hallTicket details by hallTicketNumber
-    @GetMapping("hallTicket/{hallTicketNumber}")
+    @GetMapping("/{hallTicketNumber}")
     public Optional<HallTicket> getHallTicketByHallTicketNumber(@PathVariable int hallTicketNumber)
     {
         return hallTicketService.getHallTicketByHallTicketNumber(hallTicketNumber);
     }
 
     //post hallTicket details
-    @PostMapping("/hallTicket")
+    @PostMapping("/")
     public HallTicket createHallTicket(@RequestBody HallTicket hallTicket)
     {
         HallTicket savedHallTicket = hallTicketService.createHallTicket(hallTicket);
@@ -38,14 +39,14 @@ public class HallTicketController extends HallTicketServiceImpl {
     }
 
     // delete hallTicket details by hallTicketNumber
-    @DeleteMapping("hallTicket/{hallTicketNumber}")
+    @DeleteMapping("/{hallTicketNumber}")
     public String deletehallTicket(@PathVariable int hallTicketNumber)
     {
         return hallTicketService.deleteHallTicket(hallTicketNumber);
     }
 
     // delete all organizations
-    @DeleteMapping("hallTicket")
+    @DeleteMapping("/")
     public String deletehallTicket()
     {
         return hallTicketService.deleteAllHallTickets();

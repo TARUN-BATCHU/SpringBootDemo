@@ -11,41 +11,42 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/user")
 public class UserController extends UserServiceImpl {
 
     @Autowired
     UserService userService;
 
     //get all users details
-    @GetMapping("/user")
+    @GetMapping("/")
     public List<User> getAllUsers(Pageable pageable)
     {
         return userService.getAllUsers(pageable);
     }
 
     //get user details by user id
-    @GetMapping("user/{id}")
+    @GetMapping("/{id}")
     public Optional<User> getUserById(@PathVariable int id)
     {
         return userService.getUserById(id);
     }
 
     // post user details
-    @PostMapping("/user")
+    @PostMapping("/")
     public User createUser(@RequestBody User user)
     {
         return userService.createUser(user);
     }
 
     // delete user details by id
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/{id}")
     public String deleteUserById(@PathVariable int id)
     {
         return userService.deleteUserById(id);
     }
 
     // delete all users
-    @DeleteMapping("/user")
+    @DeleteMapping("/")
     public String deleteAllUsers()
     {
         return userService.deleteAllUsers();
@@ -53,7 +54,7 @@ public class UserController extends UserServiceImpl {
 
 
     // update users by id
-    @PutMapping("/user")
+    @PutMapping("/")
     public User updateUser(@RequestBody User user)
     {
         return userService.updateUser(user);
