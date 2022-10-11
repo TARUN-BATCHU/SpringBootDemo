@@ -18,7 +18,7 @@ public @Data class Course {
 
     private String CourseName;
 
-    @ManyToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "course", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<User> users = new HashSet<>();
 }
