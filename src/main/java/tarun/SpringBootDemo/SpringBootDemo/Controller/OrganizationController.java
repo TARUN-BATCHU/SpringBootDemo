@@ -40,14 +40,14 @@ public class OrganizationController extends OrganizationServiceImpl {
     }
 
     // delete organization details by id
-    @RequestMapping("delete/organization/{id}")
+    @RequestMapping("organization/delete/{id}")
     public String deleteOrganization(@PathVariable int id)
     {
         return organizationService.deleteOrganization(id);
     }
 
     // delete all organizations
-    @RequestMapping("delete/organizations")
+    @RequestMapping("organizations/delete")
     public String deleteOrganizations()
     {
         return organizationService.deleteAllOrganizations();
@@ -59,7 +59,7 @@ public class OrganizationController extends OrganizationServiceImpl {
         return organizationService.GetUsersByOrganizationId(organizationId, pageable);
     }
 
-    @GetMapping("organizationName/users/{organizationName}")
+    @GetMapping("organization/organizationName/users/{organizationName}")
     public List<User> getUserByOrganizationName(@PathVariable String organizationName, Pageable pageable)
     {
         return organizationService.GetUsersByOrganizationName(organizationName,pageable);

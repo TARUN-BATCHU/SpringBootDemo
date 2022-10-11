@@ -18,7 +18,7 @@ public class HallTicketController extends HallTicketServiceImpl {
     HallTicketService hallTicketService;
 
     //get all Hallticket details
-    @GetMapping("/hallTickets")
+    @GetMapping("/hallTicket")
     public List<HallTicket> getAllHallTickets()
     {
         return hallTicketService.getAllHallTickets();
@@ -40,14 +40,14 @@ public class HallTicketController extends HallTicketServiceImpl {
     }
 
     // delete hallTicket details by hallTicketNumber
-    @RequestMapping("delete/hallTicket/{hallTicketNumber}")
+    @RequestMapping("hallTicket/delete/{hallTicketNumber}")
     public String deletehallTicket(@PathVariable int hallTicketNumber)
     {
         return hallTicketService.deleteHallTicket(hallTicketNumber);
     }
 
     // delete all organizations
-    @RequestMapping("delete/hallTickets")
+    @RequestMapping("hallTicket/delete")
     public String deletehallTicket()
     {
         return hallTicketService.deleteAllHallTickets();
