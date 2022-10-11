@@ -1,6 +1,7 @@
 package tarun.SpringBootDemo.SpringBootDemo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import tarun.SpringBootDemo.SpringBootDemo.entities.Course;
 import tarun.SpringBootDemo.SpringBootDemo.entities.User;
@@ -26,7 +27,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public List<User> getAllUsers(Pageable pageable) {
         return userRepository.findAll();
     }
 

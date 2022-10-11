@@ -13,7 +13,7 @@ import java.util.Set;
 public @Data class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
     private String userName;
@@ -32,7 +32,8 @@ public @Data class User {
             inverseJoinColumns = {@JoinColumn(name = "course_id", referencedColumnName = "courseId", nullable = false,updatable = false)})
     private Set<Course> course = new HashSet<>();
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "user")
+    @OneToOne
+    @JoinColumn(name = "HallTicket_fk")
     private HallTicket hallTicket;
 
 

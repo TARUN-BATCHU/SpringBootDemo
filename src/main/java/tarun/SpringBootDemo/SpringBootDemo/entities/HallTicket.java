@@ -11,14 +11,10 @@ import javax.persistence.*;
 public @Data class HallTicket {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer HallTicketNumber;
 
     private Integer RoomNumber;
 
-    @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
 
 }

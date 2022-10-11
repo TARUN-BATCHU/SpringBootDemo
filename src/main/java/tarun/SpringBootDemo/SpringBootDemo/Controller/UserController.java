@@ -1,6 +1,7 @@
 package tarun.SpringBootDemo.SpringBootDemo.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import tarun.SpringBootDemo.SpringBootDemo.entities.User;
 import tarun.SpringBootDemo.SpringBootDemo.service.UserService;
@@ -19,9 +20,9 @@ public class UserController extends UserServiceImpl {
 
     //get all users details
     @GetMapping("/users")
-    public List<User> getAllUsers()
+    public List<User> getAllUsers(Pageable pageable)
     {
-        return userService.getAllUsers();
+        return userService.getAllUsers(pageable);
     }
 
     //get user details by user id

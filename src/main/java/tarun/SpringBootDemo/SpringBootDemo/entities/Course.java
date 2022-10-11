@@ -13,12 +13,10 @@ import java.util.Set;
 public @Data class Course {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer CourseId;
 
     private String CourseName;
-
-
 
     @ManyToMany(mappedBy = "course", fetch = FetchType.LAZY)
     @JsonIgnore

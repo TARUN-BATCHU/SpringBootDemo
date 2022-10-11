@@ -11,7 +11,7 @@ import java.util.List;
 public @Data class Organization {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer organizationId;
 
     private String organizationName;
