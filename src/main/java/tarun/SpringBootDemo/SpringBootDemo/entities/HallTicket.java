@@ -8,7 +8,8 @@ import javax.persistence.*;
 
 @Entity(name = "hallticket")
 @NoArgsConstructor
-public @Data class HallTicket {
+@Data
+public class HallTicket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

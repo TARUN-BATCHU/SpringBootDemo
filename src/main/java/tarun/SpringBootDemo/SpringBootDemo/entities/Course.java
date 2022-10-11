@@ -10,7 +10,8 @@ import java.util.Set;
 
 @Entity(name = "course")
 @NoArgsConstructor
-public @Data class Course {
+@Data
+public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

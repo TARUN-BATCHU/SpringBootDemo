@@ -8,7 +8,8 @@ import java.util.List;
 
 @Entity(name = "organization")
 @NoArgsConstructor
-public @Data class Organization {
+@Data
+public class Organization {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
