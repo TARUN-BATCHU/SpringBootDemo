@@ -52,7 +52,7 @@ public class CourseController {
         return courseService.deleteAllCourses();
     }
 
-    @GetMapping("course/users/{courseId}")
+    @GetMapping("course/user/{courseId}")
     public List<User> getUserByCourseId(@PathVariable int courseId)
     {
         return courseService.getUserByCourseId(courseId);

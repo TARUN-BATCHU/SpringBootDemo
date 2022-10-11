@@ -47,19 +47,19 @@ public class OrganizationController extends OrganizationServiceImpl {
     }
 
     // delete all organizations
-    @DeleteMapping("organizations")
+    @DeleteMapping("organization")
     public String deleteOrganizations()
     {
         return organizationService.deleteAllOrganizations();
     }
 
-    @GetMapping("organization/users/{organizationId}")
+    @GetMapping("organization/user/{organizationId}")
     public List<User> getUserByOrganizationId(@PathVariable int organizationId, Pageable pageable)
     {
         return organizationService.getUsersByOrganizationId(organizationId, pageable);
     }
 
-    @GetMapping("organization/organizationName/users/{organizationName}")
+    @GetMapping("organization/organizationName/user/{organizationName}")
     public List<User> getUserByOrganizationName(@PathVariable String organizationName, Pageable pageable)
     {
         return organizationService.getUsersByOrganizationName(organizationName,pageable);
