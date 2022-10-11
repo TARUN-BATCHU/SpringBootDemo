@@ -10,6 +10,7 @@ import tarun.SpringBootDemo.SpringBootDemo.repository.OrganizationRepository;
 import tarun.SpringBootDemo.SpringBootDemo.repository.UserRepository;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
@@ -21,8 +22,8 @@ public class OrganizationServiceImpl implements OrganizationService {
     UserRepository userRepository;
 
     @Override
-    public List<Organization> getAllOrganizations() {
-        return organizationRepository.findAll();
+    public List<Organization> getAllOrganizations(Pageable pageable) {
+        return organizationRepository.findAll(pageable).getContent().stream().collect(Collectors.toList());
     }
 
     @Override

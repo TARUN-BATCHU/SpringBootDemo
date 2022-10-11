@@ -1,16 +1,17 @@
 package tarun.SpringBootDemo.SpringBootDemo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import tarun.SpringBootDemo.SpringBootDemo.entities.Course;
 import tarun.SpringBootDemo.SpringBootDemo.entities.User;
 import tarun.SpringBootDemo.SpringBootDemo.exception.NotFoundException;
 import tarun.SpringBootDemo.SpringBootDemo.repository.UserRepository;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -28,7 +29,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<User> getAllUsers(Pageable pageable) {
-        return userRepository.findAll();
+        return userRepository.findAll(pageable).getContent().stream().collect(Collectors.toList());
     }
 
     @Override

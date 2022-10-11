@@ -2,6 +2,7 @@ package tarun.SpringBootDemo.SpringBootDemo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.web.bind.annotation.*;
 import tarun.SpringBootDemo.SpringBootDemo.entities.Organization;
 import tarun.SpringBootDemo.SpringBootDemo.entities.User;
@@ -20,9 +21,9 @@ public class OrganizationController extends OrganizationServiceImpl {
 
     //get all organization details
     @GetMapping("/")
-    public List<Organization> getAllOrganizations()
+    public List<Organization> getAllOrganizations(Pageable pageable)
     {
-        return organizationService.getAllOrganizations();
+        return organizationService.getAllOrganizations(pageable);
     }
 
     // get organization details by id

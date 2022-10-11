@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class HallTicket {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer hallTicketNumber;
 
     private Integer roomNumber;

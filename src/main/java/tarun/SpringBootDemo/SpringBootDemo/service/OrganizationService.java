@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface OrganizationService {
 
-    List<Organization> getAllOrganizations();
+    List<Organization> getAllOrganizations(Pageable pageable);
 
     Optional<Organization> getOrganizationById(int id);
 
