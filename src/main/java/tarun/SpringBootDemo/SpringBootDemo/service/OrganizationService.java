@@ -21,9 +21,9 @@ public interface OrganizationService {
 
     Organization updateOrganization(Organization organization);
 
-    List<User> GetUsersByOrganizationId(int organizationId,Pageable pageable);
+    List<User> getUsersByOrganizationId(int organizationId,Pageable pageable);
 
-    List<User> GetUsersByOrganizationName(String organizationName, Pageable pageable);
+    List<User> getUsersByOrganizationName(String organizationName, Pageable pageable);
 
 
 

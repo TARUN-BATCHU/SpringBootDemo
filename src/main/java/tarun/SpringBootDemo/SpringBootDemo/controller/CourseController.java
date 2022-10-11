@@ -1,7 +1,6 @@
-package tarun.SpringBootDemo.SpringBootDemo.Controller;
+package tarun.SpringBootDemo.SpringBootDemo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import tarun.SpringBootDemo.SpringBootDemo.entities.Course;
 import tarun.SpringBootDemo.SpringBootDemo.entities.User;

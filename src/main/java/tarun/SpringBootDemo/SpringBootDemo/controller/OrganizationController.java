@@ -1,4 +1,4 @@
-package tarun.SpringBootDemo.SpringBootDemo.Controller;
+package tarun.SpringBootDemo.SpringBootDemo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -56,13 +56,13 @@ public class OrganizationController extends OrganizationServiceImpl {
     @GetMapping("organization/users/{organizationId}")
     public List<User> getUserByOrganizationId(@PathVariable int organizationId, Pageable pageable)
     {
-        return organizationService.GetUsersByOrganizationId(organizationId, pageable);
+        return organizationService.getUsersByOrganizationId(organizationId, pageable);
     }
 
     @GetMapping("organization/organizationName/users/{organizationName}")
     public List<User> getUserByOrganizationName(@PathVariable String organizationName, Pageable pageable)
     {
-        return organizationService.GetUsersByOrganizationName(organizationName,pageable);
+        return organizationService.getUsersByOrganizationName(organizationName,pageable);
     }
 
 

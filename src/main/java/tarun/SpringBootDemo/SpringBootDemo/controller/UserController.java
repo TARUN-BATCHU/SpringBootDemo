@@ -1,4 +1,4 @@
-package tarun.SpringBootDemo.SpringBootDemo.Controller;
+package tarun.SpringBootDemo.SpringBootDemo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -7,8 +7,6 @@ import tarun.SpringBootDemo.SpringBootDemo.entities.User;
 import tarun.SpringBootDemo.SpringBootDemo.service.UserService;
 import tarun.SpringBootDemo.SpringBootDemo.service.UserServiceImpl;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
