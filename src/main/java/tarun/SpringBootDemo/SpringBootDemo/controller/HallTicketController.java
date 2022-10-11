@@ -38,14 +38,14 @@ public class HallTicketController extends HallTicketServiceImpl {
     }
 
     // delete hallTicket details by hallTicketNumber
-    @RequestMapping("hallTicket/delete/{hallTicketNumber}")
+    @DeleteMapping("hallTicket/{hallTicketNumber}")
     public String deletehallTicket(@PathVariable int hallTicketNumber)
     {
         return hallTicketService.deleteHallTicket(hallTicketNumber);
     }
 
     // delete all organizations
-    @RequestMapping("hallTicket/delete")
+    @DeleteMapping("hallTicket")
     public String deletehallTicket()
     {
         return hallTicketService.deleteAllHallTickets();

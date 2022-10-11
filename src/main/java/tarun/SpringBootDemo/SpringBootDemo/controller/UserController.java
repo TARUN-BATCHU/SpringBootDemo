@@ -38,14 +38,14 @@ public class UserController extends UserServiceImpl {
     }
 
     // delete user details by id
-    @RequestMapping("delete/users/{id}")
+    @DeleteMapping("/users/{id}")
     public String deleteUserById(@PathVariable int id)
     {
         return userService.deleteUserById(id);
     }
 
     // delete all users
-    @RequestMapping("delete/users")
+    @DeleteMapping("/users")
     public String deleteAllUsers()
     {
         return userService.deleteAllUsers();

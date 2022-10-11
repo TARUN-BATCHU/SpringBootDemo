@@ -40,14 +40,14 @@ public class OrganizationController extends OrganizationServiceImpl {
     }
 
     // delete organization details by id
-    @RequestMapping("organization/delete/{id}")
+    @DeleteMapping("organization/{id}")
     public String deleteOrganization(@PathVariable int id)
     {
         return organizationService.deleteOrganization(id);
     }
 
     // delete all organizations
-    @RequestMapping("organizations/delete")
+    @DeleteMapping("organizations")
     public String deleteOrganizations()
     {
         return organizationService.deleteAllOrganizations();

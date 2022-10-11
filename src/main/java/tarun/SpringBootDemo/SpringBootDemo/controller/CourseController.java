@@ -39,14 +39,14 @@ public class CourseController {
     }
 
     // delete course details by id
-    @RequestMapping("course/delete/{courseid}")
+    @DeleteMapping("course/{courseid}")
     public String deleteCourse(@PathVariable int courseid)
     {
         return courseService.deleteCourse(courseid);
     }
 
     // delete all courses
-    @RequestMapping("course/delete")
+    @DeleteMapping("/course")
     public String deleteCourses()
     {
         return courseService.deleteAllCourses();
