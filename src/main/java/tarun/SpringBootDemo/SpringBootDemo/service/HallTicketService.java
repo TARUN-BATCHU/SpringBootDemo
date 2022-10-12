@@ -10,11 +10,11 @@ public interface HallTicketService {
 
     List<HallTicket> getAllHallTickets(Pageable pageable);
 
-    Optional<HallTicket> getHallTicketByHallTicketNumber(int HallTicketNumber);
+    Optional<HallTicket> getHallTicketByHallTicketNumber(int hallTicketNumber);
 
     HallTicket createHallTicket(HallTicket hallTicket);
 
-    String deleteHallTicket(int HallTicketNumber);
+    String deleteHallTicket(int hallTicketNumber);
 
     String deleteAllHallTickets();
 

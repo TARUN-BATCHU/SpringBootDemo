@@ -26,10 +26,10 @@ public class CourseController {
     }
 
     // get course details by id
-    @GetMapping("/{courseid}")
-    public Optional<Course> getCourseById(@PathVariable int courseid)
+    @GetMapping("/{courseId}")
+    public Optional<Course> getCourseById(@PathVariable int courseId)
     {
-        return courseService.getCourseById(courseid);
+        return courseService.getCourseById(courseId);
     }
 
     //post course details
@@ -41,10 +41,10 @@ public class CourseController {
     }
 
     // delete course details by id
-    @DeleteMapping("/{courseid}")
-    public String deleteCourse(@PathVariable int courseid)
+    @DeleteMapping("/{courseId}")
+    public String deleteCourse(@PathVariable int courseId)
     {
-        return courseService.deleteCourse(courseid);
+        return courseService.deleteCourse(courseId);
     }
 
     // delete all courses

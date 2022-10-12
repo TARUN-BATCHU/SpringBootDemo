@@ -12,11 +12,11 @@ public interface CourseService {
 
     List<Course> getAllCourses(Pageable pageable);
 
-    Optional<Course> getCourseById(int courseid);
+    Optional<Course> getCourseById(int courseId);
 
     Course createCourse(Course course);
 
-    String deleteCourse(int courseid);
+    String deleteCourse(int courseId);
 
     String deleteAllCourses();
 

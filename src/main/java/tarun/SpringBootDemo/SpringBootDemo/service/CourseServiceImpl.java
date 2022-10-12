@@ -29,8 +29,8 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
-    public Optional<Course> getCourseById(int courseid) {
-        Optional<Course> c1 = courseRepository.findById(courseid);
+    public Optional<Course> getCourseById(int courseId) {
+        Optional<Course> c1 = courseRepository.findById(courseId);
         if(c1.isEmpty()){
             throw new NotFoundException("No courses were registered with given Course Id");}
         return c1;
@@ -44,12 +44,12 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
-    public String deleteCourse(int courseid) {
-        Optional<Course> cor1 = courseRepository.findById(courseid);
+    public String deleteCourse(int courseId) {
+        Optional<Course> cor1 = courseRepository.findById(courseId);
         if(cor1.isEmpty()){
             throw new NotFoundException("CANT DELETE AS COURSE WITH GIVEN ID NOT EXISTS");}
         else{
-            courseRepository.deleteById(courseid);}
+            courseRepository.deleteById(courseId);}
         return "Course deleted";
     }
 

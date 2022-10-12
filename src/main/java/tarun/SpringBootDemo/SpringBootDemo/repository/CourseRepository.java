@@ -10,6 +10,6 @@ import java.util.Optional;
 
 public interface CourseRepository extends JpaRepository<Course, Integer> {
 
-    Optional<Course> findByCourseName(String CourseName);
+    Optional<Course> findByCourseName(String courseName);
     Page<Course> findAll(Pageable pageable);
 }

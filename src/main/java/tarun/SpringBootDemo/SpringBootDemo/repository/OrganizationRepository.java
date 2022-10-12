@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface OrganizationRepository extends JpaRepository<Organization, Integer> {
 
-   Optional<Organization> findByOrganizationName(String OrganizationName);
+   Optional<Organization> findByOrganizationName(String organizationName);
 
    Page<Organization> findAll(Pageable pageable);
 }
