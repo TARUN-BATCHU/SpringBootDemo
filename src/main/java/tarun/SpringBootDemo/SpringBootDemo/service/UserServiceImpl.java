@@ -33,9 +33,9 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User createUser(User user) {
-        Optional<User> u3 = userRepository.findByEmail(user.getEmail());
-        if(u3 != null) {throw new AlreadyExistsException("USER EMAIL ALREADY EXISTS IN DATABASE");}
-        return userRepository.save(user);
+        User u3 = userRepository.findByEmail(user.getEmail()).orElse(null);
+        if(u3 == null){return userRepository.save(user);}
+        else{throw new AlreadyExistsException("USER EMAIL ALREADY EXISTS IN DATABASE");}
     }
 
     @Override
