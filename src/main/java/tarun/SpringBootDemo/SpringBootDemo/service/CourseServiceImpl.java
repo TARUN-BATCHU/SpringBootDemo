@@ -7,6 +7,7 @@ import tarun.SpringBootDemo.SpringBootDemo.entities.Course;
 import tarun.SpringBootDemo.SpringBootDemo.entities.Organization;
 import tarun.SpringBootDemo.SpringBootDemo.entities.User;
 import tarun.SpringBootDemo.SpringBootDemo.exception.AlreadyExistsException;
+import tarun.SpringBootDemo.SpringBootDemo.exception.NotFoundException;
 import tarun.SpringBootDemo.SpringBootDemo.repository.CourseRepository;
 import tarun.SpringBootDemo.SpringBootDemo.repository.UserRepository;
 
@@ -28,7 +29,10 @@ public class CourseServiceImpl implements CourseService{
 
     @Override
     public Optional<Course> getCourseById(int courseid) {
-        return courseRepository.findById(courseid);
+        Optional<Course> c1 = courseRepository.findById(courseid);
+        if(c1.isEmpty())
+            throw new NotFoundException("No courses were registered with given Course Id");
+        return c1;
     }
 
     @Override

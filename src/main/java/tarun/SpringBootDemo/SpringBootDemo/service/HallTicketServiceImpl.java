@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import tarun.SpringBootDemo.SpringBootDemo.entities.HallTicket;
 import tarun.SpringBootDemo.SpringBootDemo.entities.User;
+import tarun.SpringBootDemo.SpringBootDemo.exception.NotFoundException;
 import tarun.SpringBootDemo.SpringBootDemo.repository.HallTicketRepository;
 import tarun.SpringBootDemo.SpringBootDemo.repository.UserRepository;
 
@@ -26,7 +27,10 @@ public class HallTicketServiceImpl implements HallTicketService{
 
     @Override
     public Optional<HallTicket> getHallTicketByHallTicketNumber(int HallTicketNumber) {
-        return hallTicketRepository.findById(HallTicketNumber);
+        Optional<HallTicket> hall = hallTicketRepository.findById(HallTicketNumber);
+        if(hall.isEmpty())
+            throw new NotFoundException("No HallTicket exists with given Number");
+        return hall;
     }
 
     @Override

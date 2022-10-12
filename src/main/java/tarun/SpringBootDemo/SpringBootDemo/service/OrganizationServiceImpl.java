@@ -29,7 +29,10 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public Optional<Organization> getOrganizationById(int id) {
-        return organizationRepository.findById(id);
+        Optional<Organization> org1 = organizationRepository.findById(id);
+        if(org1.isEmpty())
+            throw new NotFoundException("There were no organizations with id:"+id+".");
+        return org1;
     }
 
     @Override
