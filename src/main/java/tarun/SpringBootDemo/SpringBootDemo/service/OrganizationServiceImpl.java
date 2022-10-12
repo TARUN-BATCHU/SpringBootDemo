@@ -67,13 +67,15 @@ public class OrganizationServiceImpl implements OrganizationService {
     public List<User> getUsersByOrganizationId(int organizationId,Pageable pageable) {
         Optional<Organization> o = organizationRepository.findById(organizationId);
         if(o.isEmpty())
-            throw new NotFoundException("There were no users in the organization with id:"+organizationId);
+            throw new NotFoundException("There were no organization with id: "+organizationId+" so cant display users");
         return userRepository.findByOrganization(o,pageable);
     }
 
     @Override
     public List<User> getUsersByOrganizationName(String organizationName, Pageable pageable) {
         Optional<Organization> o1 = organizationRepository.findByOrganizationName(organizationName);
+        if(o1.isEmpty())
+            throw new NotFoundException("There were no organization with Name: "+organizationName+" so cant display users");
         return userRepository.findByOrganization(o1,pageable);
     }
 }

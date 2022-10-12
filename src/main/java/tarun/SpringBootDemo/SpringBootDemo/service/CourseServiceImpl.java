@@ -67,6 +67,8 @@ public class CourseServiceImpl implements CourseService{
     @Override
     public List<User> getUserByCourseId(int courseId) {
         Optional<Course> c = courseRepository.findById(courseId);
+        if (c.isEmpty())
+            throw new NotFoundException("Cant display Users as There is no course registered with given id:"+courseId);
         return userRepository.findByCourse(c);
     }
 }
