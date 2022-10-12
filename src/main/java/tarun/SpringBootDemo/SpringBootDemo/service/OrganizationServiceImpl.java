@@ -44,7 +44,11 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public String deleteOrganization(int id) {
-        organizationRepository.deleteById(id);
+        Optional<Organization> org1 = organizationRepository.findById(id);
+        if(org1.isEmpty())
+            throw new NotFoundException("CANT DELETE AS ORGANIZATION WITH GIVEN ID NOT EXISTS");
+        else
+            organizationRepository.deleteById(id);
         return "Organization details deleted with id:" + id + ".";
     }
 

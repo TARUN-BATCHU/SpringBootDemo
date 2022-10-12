@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import tarun.SpringBootDemo.SpringBootDemo.entities.HallTicket;
+import tarun.SpringBootDemo.SpringBootDemo.entities.Organization;
 import tarun.SpringBootDemo.SpringBootDemo.entities.User;
 import tarun.SpringBootDemo.SpringBootDemo.exception.NotFoundException;
 import tarun.SpringBootDemo.SpringBootDemo.repository.HallTicketRepository;
@@ -41,7 +42,11 @@ public class HallTicketServiceImpl implements HallTicketService{
 
     @Override
     public String deleteHallTicket(int HallTicketNumber) {
-        hallTicketRepository.deleteById(HallTicketNumber);
+        Optional<HallTicket> hall1 = hallTicketRepository.findById(HallTicketNumber);
+        if(hall1.isEmpty())
+            throw new NotFoundException("CANT DELETE AS HallTicket WITH GIVEN ID NOT EXISTS");
+        else
+            hallTicketRepository.deleteById(HallTicketNumber);
         return "Hall Ticket deleted with number : "+HallTicketNumber+".";
     }
 

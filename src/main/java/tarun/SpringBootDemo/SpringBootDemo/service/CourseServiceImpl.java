@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import tarun.SpringBootDemo.SpringBootDemo.entities.Course;
+import tarun.SpringBootDemo.SpringBootDemo.entities.HallTicket;
 import tarun.SpringBootDemo.SpringBootDemo.entities.Organization;
 import tarun.SpringBootDemo.SpringBootDemo.entities.User;
 import tarun.SpringBootDemo.SpringBootDemo.exception.AlreadyExistsException;
@@ -44,7 +45,11 @@ public class CourseServiceImpl implements CourseService{
 
     @Override
     public String deleteCourse(int courseid) {
-        courseRepository.deleteById(courseid);
+        Optional<Course> cor1 = courseRepository.findById(courseid);
+        if(cor1.isEmpty())
+            throw new NotFoundException("CANT DELETE AS COURSE WITH GIVEN ID NOT EXISTS");
+        else
+            courseRepository.deleteById(courseid);
         return "Course deleted";
     }
 

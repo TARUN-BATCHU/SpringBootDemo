@@ -40,7 +40,11 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public String deleteUserById(int id) {
-        userRepository.deleteById(id);
+        Optional<User> us = userRepository.findById(id);
+        if(us.isEmpty())
+            throw new NotFoundException("CANT DELETE, As user with given id not exists");
+        else
+            userRepository.deleteById(id);
         return "User deleted with id: "+id+".";
     }
 
