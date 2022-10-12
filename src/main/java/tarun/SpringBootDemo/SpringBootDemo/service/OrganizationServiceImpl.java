@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import tarun.SpringBootDemo.SpringBootDemo.entities.Organization;
 import tarun.SpringBootDemo.SpringBootDemo.entities.User;
+import tarun.SpringBootDemo.SpringBootDemo.exception.AlreadyExistsException;
 import tarun.SpringBootDemo.SpringBootDemo.exception.NotFoundException;
 import tarun.SpringBootDemo.SpringBootDemo.repository.OrganizationRepository;
 import tarun.SpringBootDemo.SpringBootDemo.repository.UserRepository;
@@ -33,6 +34,8 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public Organization createOrganization(Organization organization) {
+        Optional<Organization> org = organizationRepository.findByOrganizationName(organization.getOrganizationName());
+        if(org != null) throw new AlreadyExistsException("ORGANIZATION WITH SAME NAME ALREADY EXISTS IN DATABASE");
         return organizationRepository.save(organization);
     }
 

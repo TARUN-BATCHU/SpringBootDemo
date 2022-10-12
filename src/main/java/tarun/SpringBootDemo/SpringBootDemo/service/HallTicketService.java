@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface HallTicketService {
 
-    List<HallTicket> getAllHallTickets();
+    List<HallTicket> getAllHallTickets(Pageable pageable);
 
     Optional<HallTicket> getHallTicketByHallTicketNumber(int HallTicketNumber);
 

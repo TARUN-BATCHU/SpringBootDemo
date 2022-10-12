@@ -1,6 +1,7 @@
 package tarun.SpringBootDemo.SpringBootDemo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import tarun.SpringBootDemo.SpringBootDemo.entities.HallTicket;
 import tarun.SpringBootDemo.SpringBootDemo.service.HallTicketService;
@@ -18,9 +19,9 @@ public class HallTicketController extends HallTicketServiceImpl {
 
     //get all Hallticket details
     @GetMapping("/")
-    public List<HallTicket> getAllHallTickets()
+    public List<HallTicket> getAllHallTickets(Pageable pageable)
     {
-        return hallTicketService.getAllHallTickets();
+        return hallTicketService.getAllHallTickets(pageable);
     }
 
     // get hallTicket details by hallTicketNumber

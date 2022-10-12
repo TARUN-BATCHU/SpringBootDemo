@@ -21,6 +21,9 @@ public class User {
 
     private LocalDate dateOfBirth;
 
+    @Column(unique=true)
+    private String email;
+
     // one student will study in one organization (user is a student)
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="organizationId")

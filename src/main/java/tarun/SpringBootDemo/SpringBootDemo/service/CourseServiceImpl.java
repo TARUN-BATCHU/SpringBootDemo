@@ -6,11 +6,13 @@ import org.springframework.stereotype.Service;
 import tarun.SpringBootDemo.SpringBootDemo.entities.Course;
 import tarun.SpringBootDemo.SpringBootDemo.entities.Organization;
 import tarun.SpringBootDemo.SpringBootDemo.entities.User;
+import tarun.SpringBootDemo.SpringBootDemo.exception.AlreadyExistsException;
 import tarun.SpringBootDemo.SpringBootDemo.repository.CourseRepository;
 import tarun.SpringBootDemo.SpringBootDemo.repository.UserRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CourseServiceImpl implements CourseService{
@@ -20,8 +22,8 @@ public class CourseServiceImpl implements CourseService{
     UserRepository userRepository;
 
     @Override
-    public List<Course> getAllCourses() {
-        return courseRepository.findAll();
+    public List<Course> getAllCourses(Pageable pageable) {
+        return courseRepository.findAll(pageable).getContent().stream().collect(Collectors.toList());
     }
 
     @Override
@@ -31,6 +33,8 @@ public class CourseServiceImpl implements CourseService{
 
     @Override
     public Course createCourse(Course course) {
+        Optional<Course> c = courseRepository.findByCourseName(course.getCourseName());
+        if(c != null) throw new AlreadyExistsException("COURSE WITH SAME NAME ALREADY EXISTS IN DATABASE");
         return courseRepository.save(course);
     }
 

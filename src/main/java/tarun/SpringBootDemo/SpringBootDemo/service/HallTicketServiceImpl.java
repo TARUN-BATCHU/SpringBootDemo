@@ -10,6 +10,7 @@ import tarun.SpringBootDemo.SpringBootDemo.repository.UserRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class HallTicketServiceImpl implements HallTicketService{
@@ -19,8 +20,8 @@ public class HallTicketServiceImpl implements HallTicketService{
 
 
     @Override
-    public List<HallTicket> getAllHallTickets() {
-        return hallTicketRepository.findAll();
+    public List<HallTicket> getAllHallTickets(Pageable pageable) {
+        return hallTicketRepository.findAll(pageable).getContent().stream().collect(Collectors.toList());
     }
 
     @Override

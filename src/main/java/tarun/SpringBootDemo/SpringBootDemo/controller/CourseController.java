@@ -1,6 +1,7 @@
 package tarun.SpringBootDemo.SpringBootDemo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import tarun.SpringBootDemo.SpringBootDemo.entities.Course;
 import tarun.SpringBootDemo.SpringBootDemo.entities.User;
@@ -19,9 +20,9 @@ public class CourseController {
 
     //get all course details
     @GetMapping("/")
-    public List<Course> getAllCourses()
+    public List<Course> getAllCourses(Pageable pageable)
     {
-        return courseService.getAllCourses();
+        return courseService.getAllCourses(pageable);
     }
 
     // get course details by id

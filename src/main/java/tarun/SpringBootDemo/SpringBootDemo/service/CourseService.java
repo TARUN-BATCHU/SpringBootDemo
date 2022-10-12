@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface CourseService {
 
-    List<Course> getAllCourses();
+    List<Course> getAllCourses(Pageable pageable);
 
     Optional<Course> getCourseById(int courseid);
 

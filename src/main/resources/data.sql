@@ -22,10 +22,10 @@ VALUES (1,'JAVA'),
 (2,'PYTHON'),
 (3,'C');
 
-INSERT INTO USERS(USER_ID,DATE_OF_BIRTH,USER_NAME,HALL_TICKET_FK,ORGANIZATION_ID)
-VALUES (1,'1993-01-05','hari',1,1),
-(2,'2000-01-15','elon',2,3),
-(3,'1994-12-25','mark',3,2);
+INSERT INTO USERS(USER_ID,DATE_OF_BIRTH,EMAIL,USER_NAME,HALL_TICKET_FK,ORGANIZATION_ID)
+VALUES (1,'1993-01-05','h@mail.com','hari',1,1),
+(2,'2000-01-15','e@mail.com','elon',2,3),
+(3,'1994-12-25','m@mail.com','mark',3,2);
 --(4,'1993-01-05','abc',8),
 --(5,'2000-01-15','tarun',1),
 --(6,'1999-09-25','ram',2),

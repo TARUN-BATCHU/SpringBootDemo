@@ -16,8 +16,5 @@ public interface UserService {
     String deleteAllUsers();
     User updateUser(User user);
 
-    //List<User> GetUsersByDob(LocalDate Dob);
-
-
 
 }
