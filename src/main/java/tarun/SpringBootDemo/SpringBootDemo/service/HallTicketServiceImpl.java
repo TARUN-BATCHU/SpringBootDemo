@@ -29,8 +29,8 @@ public class HallTicketServiceImpl implements HallTicketService{
     @Override
     public Optional<HallTicket> getHallTicketByHallTicketNumber(int HallTicketNumber) {
         Optional<HallTicket> hall = hallTicketRepository.findById(HallTicketNumber);
-        if(hall.isEmpty())
-            throw new NotFoundException("No HallTicket exists with given Number");
+        if(hall.isEmpty()){
+            throw new NotFoundException("No HallTicket exists with given Number");}
         return hall;
     }
 
@@ -43,10 +43,10 @@ public class HallTicketServiceImpl implements HallTicketService{
     @Override
     public String deleteHallTicket(int HallTicketNumber) {
         Optional<HallTicket> hall1 = hallTicketRepository.findById(HallTicketNumber);
-        if(hall1.isEmpty())
-            throw new NotFoundException("CANT DELETE AS HallTicket WITH GIVEN ID NOT EXISTS");
-        else
-            hallTicketRepository.deleteById(HallTicketNumber);
+        if(hall1.isEmpty()){
+            throw new NotFoundException("CANT DELETE AS HallTicket WITH GIVEN ID NOT EXISTS");}
+        else{
+            hallTicketRepository.deleteById(HallTicketNumber);}
         return "Hall Ticket deleted with number : "+HallTicketNumber+".";
     }
 

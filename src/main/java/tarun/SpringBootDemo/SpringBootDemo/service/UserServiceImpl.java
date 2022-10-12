@@ -21,8 +21,8 @@ public class UserServiceImpl implements UserService{
     @Override
     public Optional<User> getUserById(int id) {
         Optional<User> u = userRepository.findById(id);
-        if(u.isEmpty())
-            throw new NotFoundException("There were no users in the organization with id:"+id);
+        if(u.isEmpty()){
+            throw new NotFoundException("There were no users in the organization with id:"+id);}
         return u;
     }
 
@@ -34,17 +34,17 @@ public class UserServiceImpl implements UserService{
     @Override
     public User createUser(User user) {
         Optional<User> u3 = userRepository.findByEmail(user.getEmail());
-        if(u3 != null) throw new AlreadyExistsException("USER EMAIL ALREADY EXISTS IN DATABASE");
+        if(u3 != null) {throw new AlreadyExistsException("USER EMAIL ALREADY EXISTS IN DATABASE");}
         return userRepository.save(user);
     }
 
     @Override
     public String deleteUserById(int id) {
         Optional<User> us = userRepository.findById(id);
-        if(us.isEmpty())
-            throw new NotFoundException("CANT DELETE, As user with given id not exists");
-        else
-            userRepository.deleteById(id);
+        if(us.isEmpty()){
+            throw new NotFoundException("CANT DELETE, As user with given id not exists");}
+        else{
+            userRepository.deleteById(id);}
         return "User deleted with id: "+id+".";
     }
 

@@ -30,25 +30,25 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     public Optional<Organization> getOrganizationById(int id) {
         Optional<Organization> org1 = organizationRepository.findById(id);
-        if(org1.isEmpty())
-            throw new NotFoundException("There were no organizations with id:"+id+".");
+        if(org1.isEmpty()){
+            throw new NotFoundException("There were no organizations with id:"+id+".");}
         return org1;
     }
 
     @Override
     public Organization createOrganization(Organization organization) {
         Optional<Organization> org = organizationRepository.findByOrganizationName(organization.getOrganizationName());
-        if(org != null) throw new AlreadyExistsException("ORGANIZATION WITH SAME NAME ALREADY EXISTS IN DATABASE");
+        if(org != null){ throw new AlreadyExistsException("ORGANIZATION WITH SAME NAME ALREADY EXISTS IN DATABASE");}
         return organizationRepository.save(organization);
     }
 
     @Override
     public String deleteOrganization(int id) {
         Optional<Organization> org1 = organizationRepository.findById(id);
-        if(org1.isEmpty())
-            throw new NotFoundException("CANT DELETE AS ORGANIZATION WITH GIVEN ID NOT EXISTS");
-        else
-            organizationRepository.deleteById(id);
+        if(org1.isEmpty()){
+            throw new NotFoundException("CANT DELETE AS ORGANIZATION WITH GIVEN ID NOT EXISTS");}
+        else{
+            organizationRepository.deleteById(id);}
         return "Organization details deleted with id:" + id + ".";
     }
 
@@ -66,16 +66,16 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     public List<User> getUsersByOrganizationId(int organizationId,Pageable pageable) {
         Optional<Organization> o = organizationRepository.findById(organizationId);
-        if(o.isEmpty())
-            throw new NotFoundException("There were no organization with id: "+organizationId+" so cant display users");
+        if(o.isEmpty()){
+            throw new NotFoundException("There were no organization with id: "+organizationId+" so cant display users");}
         return userRepository.findByOrganization(o,pageable);
     }
 
     @Override
     public List<User> getUsersByOrganizationName(String organizationName, Pageable pageable) {
         Optional<Organization> o1 = organizationRepository.findByOrganizationName(organizationName);
-        if(o1.isEmpty())
-            throw new NotFoundException("There were no organization with Name: "+organizationName+" so cant display users");
+        if(o1.isEmpty()){
+            throw new NotFoundException("There were no organization with Name: "+organizationName+" so cant display users");}
         return userRepository.findByOrganization(o1,pageable);
     }
 }

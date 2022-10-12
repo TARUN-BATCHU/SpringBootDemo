@@ -31,25 +31,25 @@ public class CourseServiceImpl implements CourseService{
     @Override
     public Optional<Course> getCourseById(int courseid) {
         Optional<Course> c1 = courseRepository.findById(courseid);
-        if(c1.isEmpty())
-            throw new NotFoundException("No courses were registered with given Course Id");
+        if(c1.isEmpty()){
+            throw new NotFoundException("No courses were registered with given Course Id");}
         return c1;
     }
 
     @Override
     public Course createCourse(Course course) {
         Optional<Course> c = courseRepository.findByCourseName(course.getCourseName());
-        if(c != null) throw new AlreadyExistsException("COURSE WITH SAME NAME ALREADY EXISTS IN DATABASE");
+        if(c != null) {throw new AlreadyExistsException("COURSE WITH SAME NAME ALREADY EXISTS IN DATABASE");}
         return courseRepository.save(course);
     }
 
     @Override
     public String deleteCourse(int courseid) {
         Optional<Course> cor1 = courseRepository.findById(courseid);
-        if(cor1.isEmpty())
-            throw new NotFoundException("CANT DELETE AS COURSE WITH GIVEN ID NOT EXISTS");
-        else
-            courseRepository.deleteById(courseid);
+        if(cor1.isEmpty()){
+            throw new NotFoundException("CANT DELETE AS COURSE WITH GIVEN ID NOT EXISTS");}
+        else{
+            courseRepository.deleteById(courseid);}
         return "Course deleted";
     }
 
@@ -67,8 +67,8 @@ public class CourseServiceImpl implements CourseService{
     @Override
     public List<User> getUserByCourseId(int courseId) {
         Optional<Course> c = courseRepository.findById(courseId);
-        if (c.isEmpty())
-            throw new NotFoundException("Cant display Users as There is no course registered with given id:"+courseId);
+        if (c.isEmpty()){
+            throw new NotFoundException("Cant display Users as There is no course registered with given id:"+courseId);}
         return userRepository.findByCourse(c);
     }
 }
